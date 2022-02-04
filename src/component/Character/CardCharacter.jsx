@@ -1,53 +1,71 @@
+import { useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+
+import { useApi } from '../hooks/useApi'
+import { API } from '../../constants'
+import { Spinner } from '../Spinner'
+
 import {
   AspectRatio,
   Box,
   Image,
   Text,
-  Spinner
+  Button,
+  Collapse,
+  Stack
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
 
 export const CardCharacter = () => {
-  const [characters, setCharacters] = useState([])
-  const [loader, setLoader] = useState(false)
+  const [textWrapper, setTextWrapper] = useState(null)
 
-  useEffect(() => {
-    setLoader(true)
-    fetch(`${import.meta.env.VITE_APP_BASE_URL}/characters?offset=0&${import.meta.env.VITE_APP_CREDENTIALS_API}`)
-      .then(res => res.json())
-      .then(data => {
-        setCharacters(data.data.results)
-        setLoader(false)
-      })
-      .catch(err => console.log(err))
-  }, [])
+  const [offset, setOfset] = useState(0) // TODO: Hacer la paginacióin
+  const { data, loading } = useApi(`${API.BASE_URL}/characters?offset=0&limit=40&${API.CREDENTIALS}`, offset)
 
+  function toggle (id) {
+    if (textWrapper === id) {
+      return setTextWrapper(null)
+    }
+    setTextWrapper(id)
+  }
   return (
     <>
-      {loader
+      {loading
         ? <Box display="grid" gridColumn="2" justifyItems="center" >
-          <Spinner
-            color="primary"
-            size="xl"
-            thickness='5px'
-            speed='0.65s' />
+          <Spinner/>
         </Box>
-        : characters.map(character => (
-          <Box
+        : data.map(character => (
+          <Stack
             key={character.id}
             maxW="360px"
-            textAlign="center"
             fontWeight="normal"
+            spacing={4}
           >
-            <Text fontSize="2xl">{character.name}</Text>
-            <AspectRatio maxW="360px" ratio={16 / 9} >
-              <Image src={`${character.thumbnail.path}.${character.thumbnail.extension}`}/>
-            </AspectRatio>
-          </Box>
+            <Box
+              as={RouterLink}
+              to={`/characters/${character.id}`}
+              cursor="pointer"
+              transition="200ms ease"
+              _hover={{ transform: 'scale(1.05)' }}>
+              <Text
+                bgColor="primary"
+                fontSize="2xl"
+                textAlign="center"
+                py={2}
+                px={1}
+              >
+                {character.name}
+              </Text>
+              <AspectRatio maxW="360px" height="360px" ratio={16 / 9} >
+                <Image src={`${character.thumbnail.path}.${character.thumbnail.extension}`}/>
+              </AspectRatio>
+            </Box>
+            <Button onClick={() => toggle(character.id)}>View Description</Button>
+            <Collapse in={textWrapper === character.id} animateOpacity >
+              <Text textAlign="start" >{character.description || 'No description provided'}</Text>
+            </Collapse>
+          </Stack>
         ))
       }
-
     </>
   )
 }
-console.log(!'')
