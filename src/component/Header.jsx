@@ -15,8 +15,8 @@ export const Header = () => {
             px={8}
             py={4}
             bg="primary"
-            fontWeight="bold"
             fontSize={{ base: '5xl', md: '7xl' }}
+            fontWeight="bold"
             letterSpacing={-3}
           >
             FRIKI MARVEL
