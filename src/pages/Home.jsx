@@ -1,6 +1,7 @@
 import { SimpleGrid, Image, AspectRatio, Box, Text } from '@chakra-ui/react'
 import marvel from '../assets/marvel1.jpeg'
 import marvel2 from '../assets/marvel2.jpg'
+import { Footer } from '../components/Footer'
 
 export const Home = () => {
   return (
@@ -20,6 +21,7 @@ export const Home = () => {
           <Image src={marvel} />
         </AspectRatio>
       </SimpleGrid>
+      <Footer/>
     </Box>
   )
 }

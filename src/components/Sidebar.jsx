@@ -20,9 +20,6 @@ export const Sidebar = ({ onClose }) => {
       <Anchor to={'/events'} onClick={onClose}>
         Events
       </Anchor>
-      <Anchor to={'/stories'} onClick={onClose}>
-        Stories
-      </Anchor>
       <Anchor to={'/series'} onClick={onClose}>
         Series
       </Anchor>

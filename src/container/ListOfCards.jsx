@@ -5,7 +5,10 @@ export const ListOfCards = ({ children }) => {
     <Grid
       templateColumns={{ md: 'repeat(3, 1fr)', sm: 'repeat(2, 1fr)' }}
       gap={6}
-      marginTop={12}>
+      marginTop={12}
+      justifyContent="center"
+      paddingLeft={{ lg: 6 }}
+    >
       {children}
     </Grid>
   )

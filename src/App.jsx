@@ -1,15 +1,22 @@
 import { Routes, Route } from 'react-router-dom'
 
 import { Layout } from './container/Layout'
-import { Header } from './component/Header'
-import { CharacterId } from './component/Character/CharacterId'
+import { Header } from './components/Header'
 
 import { Home } from './pages/Home'
+import { Comics } from './pages/Comics'
 import { Character } from './pages/Character'
-import { CharacterEvents } from './component/Character/CharacterEvents'
-import { CharacterStories } from './component/Character/CharacterStories'
-import { CharacterComics } from './component/Character/CharacterComics'
-import { CharacterSeries } from './component/Character/CharacterSeries'
+import { Events } from './pages/Events'
+import { Series } from './pages/Series'
+
+import { CharacterId } from './pages/Character/CharacterID'
+import { CharacterEvents } from './components/Character/CharacterEvents'
+import { CharacterStories } from './components/Character/CharacterStories'
+import { CharacterComics } from './components/Character/CharacterComics'
+import { CharacterSeries } from './components/Character/CharacterSeries'
+import { ComicId } from './pages/Comics/ComicID'
+import { EventsId } from './pages/Events/EventsID'
+import { SeriesId } from './pages/Series/SeriesID'
 
 function App () {
   return (
@@ -23,10 +30,12 @@ function App () {
         <Route path="/characters/:characterId/comics" element={<CharacterComics />} />
         <Route path="/characters/:characterId/series" element={<CharacterSeries />} />
         <Route path="/characters/:characterId/stories" element={<CharacterStories />} />
-        <Route path="/comics" element={<div>Comics</div>} />
-        <Route path="/events" element={<div>Events</div>} />
-        <Route path="/series" element={<div>Series</div>} />
-        <Route path="/stories" element={<div>Stories</div>} />
+        <Route path="/comics" element={<Comics/>} />
+        <Route path="/comics/:id" element={<ComicId/>} />
+        <Route path="/events" element={<Events/>} />
+        <Route path="/events/:id" element={<EventsId/>} />
+        <Route path="/series" element={<Series/>} />
+        <Route path="/series/:id" element={<SeriesId/>} />
       </Routes>
     </Layout>
   )
