@@ -15,7 +15,7 @@ export const Comics = () => {
 
   return (
     <ListOfCards>
-      <Card data={data} path='/comics' loading={loading} />
+      <Card data={data} path='comics' loading={loading} />
     </ListOfCards>
   )
 }

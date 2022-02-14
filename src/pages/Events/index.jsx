@@ -15,7 +15,7 @@ export const Events = () => {
 
   return (
     <ListOfCards>
-      <Card data={data} path='/events' loading={loading} />
+      <Card data={data} path='events' loading={loading} />
     </ListOfCards>
   )
 }

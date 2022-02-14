@@ -15,7 +15,7 @@ export const Series = () => {
 
   return (
     <ListOfCards>
-      <Card data={data} path='/series' loading={loading} />
+      <Card data={data} path='series' loading={loading} />
     </ListOfCards>
   )
 }

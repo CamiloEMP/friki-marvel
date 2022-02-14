@@ -7,9 +7,8 @@ export const useApi = (API, params) => {
     fetch(API)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        setData(data.data.results)
         setLoading(false)
+        setData(data.data.results)
       })
       .catch(err => console.log(err))
   }, [params])
