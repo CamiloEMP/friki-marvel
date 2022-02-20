@@ -6,6 +6,7 @@ export const ListOfCards = ({ children }) => {
       minChildWidth="320px"
       spacing={6}
       marginTop={12}
+      marginBottom={12}
       justifyItems={{ sm: 'center', md: 'normal', lg: 'normal' }}
     >
       {children}
