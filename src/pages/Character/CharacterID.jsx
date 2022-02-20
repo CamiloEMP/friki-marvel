@@ -1,20 +1,17 @@
-import { Box, Center, Stack, Link, Text } from '@chakra-ui/react'
+import { Box, Stack, Link, Text } from '@chakra-ui/react'
 import { useLocation, useParams } from 'react-router-dom'
 
-import { Spinner } from '../../components/Spinner'
 import { Anchor } from '../../components/Anchor'
 import { HeaderID } from '../../components/InformationID/HeaderID'
 import { useApi } from '../../hooks/useApi'
-import { API } from '../../api/config'
+
 import { Tag } from '../../components/Tag'
 import { Loading } from '../../components/Loading'
 
 export const CharacterId = () => {
   const { characterId } = useParams()
   const { pathname } = useLocation()
-  const { loading, data } = useApi(
-    `${API.BASE_URL}/characters/${characterId}?${API.CREDENTIALS}`
-  )
+  const { loading, data } = useApi(`characters/${characterId}`)
   return (
     <>
       {loading && <Loading />}

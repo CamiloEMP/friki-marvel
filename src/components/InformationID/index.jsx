@@ -3,7 +3,6 @@ import { Tag } from '../Tag'
 
 import { useLocation, useParams, Link as RouterLink } from 'react-router-dom'
 import { useApi } from '../../hooks/useApi'
-import { API } from '../../api/config'
 
 import { Box, Stack, Link, Text } from '@chakra-ui/react'
 import { Loading } from '../Loading'
@@ -11,11 +10,12 @@ import { Loading } from '../Loading'
 export const InformationID = ({ category }) => {
   const { pathname } = useLocation()
   const { id } = useParams()
-  const { loading, data } = useApi(
-    `${API.BASE_URL}/${category}/${id}?${API.CREDENTIALS}`
-  )
+
+  const { loading, data } = useApi(`${category}/${id}`)
+
   const item = data[0]
   const imageSrc = `${item?.thumbnail.path}.${item?.thumbnail.extension}`
+
   return (
     <>
       {loading && <Loading />}
