@@ -3,35 +3,43 @@ import { Link } from 'react-router-dom'
 
 import { Heading, Text, Box, useDisclosure } from '@chakra-ui/react'
 
-import { GiSpiderMask } from 'react-icons/gi'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Heading as="header" mt={5} position="relative" textAlign="center">
-        <Link to="/">
-          <Text
-            px={8}
-            py={4}
-            bg="primary"
-            fontSize={{ base: '5xl', md: '7xl' }}
-            fontWeight="bold"
-            letterSpacing={-3}
-          >
-            FRIKI MARVEL
-          </Text>
-        </Link>
+      <Heading
+        as="header"
+        display={{ base: 'flex', md: 'block' }}
+        alignItems="center"
+        justifyContent="space-evenly"
+        paddingButton={5}
+        textAlign="center"
+        bg="black"
+        p={{ base: '2', md: '0' }}>
         <Box
-          position="absolute"
           right="20px"
           top="24px"
           display={{ base: 'block', md: 'none' }}
         >
-          <GiSpiderMask cursor="pointer" fontSize={44} onClick={onOpen} />
+          <GiHamburgerMenu fill='#fff' cursor="pointer" fontSize={34} onClick={onOpen} />
         </Box>
+        <Link to="/">
+          <Text
+            px={4}
+            bg="primary"
+            display="inline"
+            fontSize={{ base: '4xl', md: '6xl' }}
+            fontWeight="bold"
+            color="white"
+            letterSpacing={-4}
+          >
+            FRIKI MARVEL
+          </Text>
+        </Link>
+        <Nav isOpen={isOpen} onClose={onClose} />
       </Heading>
-      <Nav isOpen={isOpen} onClose={onClose} />
     </>
   )
 }

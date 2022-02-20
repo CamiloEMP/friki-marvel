@@ -6,22 +6,25 @@ export const Sidebar = ({ onClose }) => {
     <Stack
       direction={{ md: 'row', base: 'column' }}
       justify="space-evenly"
-      spacing={12}
-      fontSize="2xl"
-      padding={4}
+      fontSize="lg"
+      paddingTop={4}
+      paddingBottom={6}
       fontWeight="bold"
+      width={{ md: '55%' }}
+      margin={{ md: 'auto' }}
+      textTransform="uppercase"
     >
       <Anchor to={'/characters'} onClick={onClose}>
-        Characters
+        characters
       </Anchor>
       <Anchor to={'/comics'} onClick={onClose}>
-        Comics
+        comics
       </Anchor>
       <Anchor to={'/events'} onClick={onClose}>
-        Events
+        events
       </Anchor>
       <Anchor to={'/series'} onClick={onClose}>
-        Series
+        series
       </Anchor>
     </Stack>
   )

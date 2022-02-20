@@ -1,16 +1,15 @@
 import { HeaderID } from './HeaderID'
 import { Tag } from '../Tag'
+import { Loading } from '../Loading'
 
 import { useLocation, useParams, Link as RouterLink } from 'react-router-dom'
 import { useApi } from '../../hooks/useApi'
 
 import { Box, Stack, Link, Text } from '@chakra-ui/react'
-import { Loading } from '../Loading'
 
 export const InformationID = ({ category }) => {
   const { pathname } = useLocation()
   const { id } = useParams()
-
   const { loading, data } = useApi(`${category}/${id}`)
 
   const item = data[0]
