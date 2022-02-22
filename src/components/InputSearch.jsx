@@ -9,20 +9,20 @@ export const InputSearch = ({ setSearch }) => {
     setSearchedValue('')
   }
   return (
-    <Stack direction="row">
+    <Stack direction="row" alignItems="center" marginTop={12}>
       <Input
         value={searchedValue}
         variant='flushed'
         width="auto"
-        htmlSize={4}
-        focusBorderColor="red"
         size="lg"
+        pl={2}
+        focusBorderColor='red.500'
         onChange={(e) => setSearchedValue(e.target.value)}
         placeholder='Search by initial letters' />
       <Button
         colorScheme="red"
         type='button'
-        size="lg"
+        size="sm"
         onClick={handleSearch}
       >
         Search

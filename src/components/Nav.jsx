@@ -1,7 +1,6 @@
 import {
   Box, Drawer,
   DrawerBody,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton

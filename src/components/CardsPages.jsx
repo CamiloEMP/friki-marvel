@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { Loading } from './Loading'
 import { Anchor } from './Anchor'
+import { NotFound } from './NotFound'
 
 export const Card = ({ data, loading, path }) => {
   const [textWrapper, setTextWrapper] = useState(null)
@@ -21,7 +22,8 @@ export const Card = ({ data, loading, path }) => {
   return (
     <>
       {loading && <Loading/>}
-      {data.map(item => (
+      {(!loading && data.length === 0) && <NotFound/>}
+      {!loading && data.map(item => (
         <Stack key={item.id} minW="320px" maxW="400px" fontWeight="normal" spacing={4}>
           <Anchor
             to={`/${path}/${item.id}`}
@@ -47,7 +49,8 @@ export const Card = ({ data, loading, path }) => {
             </AspectRatio>
           </Anchor>
           <Button colorScheme="red" fontWeight="900" fontSize="lg" variant="solid"
-            onClick={() => toggle(item.id)} disabled={!item.description}>
+            onClick={() =>
+              toggle(item.id)} disabled={!item.description || item.description === ' '}>
             View Description
           </Button>
           <Collapse in={textWrapper === item.id} animateOpacity>

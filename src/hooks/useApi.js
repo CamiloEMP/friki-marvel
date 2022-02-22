@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { API } from '../api/config'
+
 export const useApi = (category, endpoint = 'titleStartsWith') => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
@@ -16,7 +18,11 @@ export const useApi = (category, endpoint = 'titleStartsWith') => {
         setLoading(false)
         setData(data.data.results)
       })
-      .catch(err => console.log(err))
-  }, [search])
+      .catch(err => {
+        const navigate = useNavigate()
+        console.log(err)
+        navigate('/NotFound')
+      })
+  }, [category, search])
   return { loading, data, setSearch }
 }

@@ -6,7 +6,7 @@ export const Sidebar = ({ onClose }) => {
     <Stack
       direction={{ md: 'row', base: 'column' }}
       justify="space-evenly"
-      fontSize="lg"
+      fontSize="sm"
       paddingTop={4}
       paddingBottom={6}
       fontWeight="bold"

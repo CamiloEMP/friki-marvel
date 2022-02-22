@@ -1,12 +1,13 @@
+import { Anchor } from './Anchor'
+import { HeaderID } from './InformationID/HeaderID'
+import { Tag } from './Tag'
+import { Loading } from './Loading'
+
+import { useApi } from '../hooks/useApi'
+
 import { Box, Stack, Link, Text } from '@chakra-ui/react'
 import { useLocation, useParams } from 'react-router-dom'
-
-import { Anchor } from '../../components/Anchor'
-import { HeaderID } from '../../components/InformationID/HeaderID'
-import { useApi } from '../../hooks/useApi'
-
-import { Tag } from '../../components/Tag'
-import { Loading } from '../../components/Loading'
+import { FiExternalLink } from 'react-icons/fi'
 
 export const CharacterId = () => {
   const { characterId } = useParams()
@@ -61,8 +62,8 @@ export const CharacterId = () => {
               <Text>See more information</Text>
               {character.urls.map((item, index) => (
                 <Tag key={index} marginRight={4}>
-                  <Link href={item.url} isExternal>
-                    {item.type}
+                  <Link display="flex" gap={1} alignItems="center" href={item.url} isExternal>
+                    {item.type} <FiExternalLink/>
                   </Link>
                 </Tag>
               ))}

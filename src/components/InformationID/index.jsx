@@ -11,7 +11,6 @@ export const InformationID = ({ category }) => {
   const { pathname } = useLocation()
   const { id } = useParams()
   const { loading, data } = useApi(`${category}/${id}`)
-
   const item = data[0]
   const imageSrc = `${item?.thumbnail.path}.${item?.thumbnail.extension}`
 

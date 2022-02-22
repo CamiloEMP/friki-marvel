@@ -14,7 +14,6 @@ export const Header = () => {
         display={{ base: 'flex', md: 'block' }}
         alignItems="center"
         justifyContent="space-evenly"
-        paddingButton={5}
         textAlign="center"
         bg="black"
         p={{ base: '2', md: '0' }}>
