@@ -1,5 +1,4 @@
-import { Nav } from './Nav'
-import { Link } from 'react-router-dom'
+import { Sidebar } from './Sidebar'
 
 import { Heading, Text, Box, useDisclosure } from '@chakra-ui/react'
 
@@ -24,20 +23,18 @@ export const Header = () => {
         >
           <GiHamburgerMenu fill='#fff' cursor="pointer" fontSize={34} onClick={onOpen} />
         </Box>
-        <Link to="/">
-          <Text
-            px={4}
-            bg="primary"
-            display="inline"
-            fontSize={{ base: '4xl', md: '6xl' }}
-            fontWeight="bold"
-            color="white"
-            letterSpacing={-4}
-          >
+        <Text
+          px={4}
+          bg="primary"
+          display="inline"
+          fontSize={{ base: '4xl', md: '6xl' }}
+          fontWeight="bold"
+          color="white"
+          letterSpacing={-4}
+        >
             FRIKI MARVEL
-          </Text>
-        </Link>
-        <Nav isOpen={isOpen} onClose={onClose} />
+        </Text>
+        <Sidebar isOpen={isOpen} onClose={onClose} />
       </Heading>
     </>
   )

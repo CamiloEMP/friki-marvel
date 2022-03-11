@@ -1,8 +1,10 @@
 import { Container } from '@chakra-ui/react'
+import { ModalAboutMe } from '../components/ModalAboutMe'
 
 export const Layout = ({ children }) => {
   return (
-    <Container alignSelf="center" maxW="container.xl" position="relative" >
+    <Container maxW="container.xl" position="relative" >
+      <ModalAboutMe/>
       {children}
     </Container>
   )

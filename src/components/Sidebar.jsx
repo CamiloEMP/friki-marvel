@@ -1,31 +1,34 @@
-import { Stack } from '@chakra-ui/react'
-import { Anchor } from './Anchor'
+import {
+  Box, Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  VStack
+} from '@chakra-ui/react'
+import { Nav } from './Nav'
+import { SocialMedia } from './SocialMedia'
 
-export const Sidebar = ({ onClose }) => {
+export const Sidebar = ({ onClose, isOpen }) => {
   return (
-    <Stack
-      direction={{ md: 'row', base: 'column' }}
-      justify="space-evenly"
-      fontSize="sm"
-      paddingTop={4}
-      paddingBottom={6}
-      fontWeight="bold"
-      width={{ md: '55%' }}
-      margin={{ md: 'auto' }}
-      textTransform="uppercase"
-    >
-      <Anchor to={'/characters'} onClick={onClose}>
-        characters
-      </Anchor>
-      <Anchor to={'/comics'} onClick={onClose}>
-        comics
-      </Anchor>
-      <Anchor to={'/events'} onClick={onClose}>
-        events
-      </Anchor>
-      <Anchor to={'/series'} onClick={onClose}>
-        series
-      </Anchor>
-    </Stack>
+    <Box color="white">
+      <Box display={{ base: 'none', md: 'block' }}>
+        <Nav />
+      </Box>
+      <Drawer size="full" isFullHeight isOpen={isOpen} placement="bottom" onClose={onClose}>
+        <DrawerOverlay/>
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerBody pt={14} >
+            <VStack position="relative" height="100%">
+              <Nav onClose={onClose} />
+              <Box position="absolute" bottom="50px">
+                <SocialMedia/>
+              </Box>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </Box>
   )
 }

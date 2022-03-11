@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { API } from '../api/config'
 
 export const useApi = (category, endpoint, setTotalResults, totalCount) => {
@@ -11,7 +10,7 @@ export const useApi = (category, endpoint, setTotalResults, totalCount) => {
   useEffect(() => {
     setLoading(true)
     fetch(
-      `${API.BASE_URL}/${category}?${toSearch}offset=${totalCount.offset}&limit=${totalCount.limit}&${API.CREDENTIALS}`
+      `${API.BASE_URL}${category}?${toSearch}offset=${totalCount.offset}&limit=${totalCount.limit}&${API.CREDENTIALS}`
     )
       .then(res => res.json())
       .then(data => {
@@ -21,8 +20,6 @@ export const useApi = (category, endpoint, setTotalResults, totalCount) => {
       })
       .catch(err => {
         console.log(err)
-        const navigate = useNavigate()
-        navigate('/NotFound')
       })
   }, [category, search, totalCount.offset])
   return { loading, data, setSearch }

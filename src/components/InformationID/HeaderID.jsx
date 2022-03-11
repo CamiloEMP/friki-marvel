@@ -2,7 +2,7 @@ import { Box, Text, Image } from '@chakra-ui/react'
 
 export const HeaderID = ({ alt, image, title }) => {
   return (
-    <Box w="100%" position="relative" mb={4}>
+    <Box w="100%" position="relative" my={8}>
       <Image
         w="100%"
         h="450px"

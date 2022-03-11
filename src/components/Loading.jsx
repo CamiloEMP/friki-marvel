@@ -1,18 +1,14 @@
-import { Box, Center } from '@chakra-ui/react'
-import { Spinner } from './Spinner'
+import { Center, Spinner } from '@chakra-ui/react'
 
-export const Loading = ({ type }) => {
-  if (type) {
-    return (
-      <Center>
-        <Spinner />
-      </Center>
-    )
-  } else {
-    return (
-      <Box display="grid" gridColumn="2" justifyItems="center">
-        <Spinner />
-      </Box>
-    )
-  }
+export const Loading = () => {
+  return (
+    <Center>
+      <Spinner
+        color="primary"
+        size="xl"
+        thickness='5px'
+        speed='.7s'
+        mt={8} />
+    </Center>
+  )
 }

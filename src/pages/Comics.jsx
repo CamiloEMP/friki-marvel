@@ -1,4 +1,3 @@
-import { useLocation, useParams } from 'react-router-dom'
 import { Card } from '../components/CardsPages'
 import { InputSearch } from '../components/InputSearch'
 import { ButtonPages } from '../components/ButtonPages'
@@ -8,20 +7,9 @@ import { ListOfCards } from '../container/ListOfCards'
 import { useApi } from '../hooks/useApi'
 import { usePage } from '../hooks/usePage'
 
-const SearchBy = {
-  characters: 'nameStartsWith',
-  comics: 'titleStartsWith',
-  series: 'titleStartsWith',
-  events: 'nameStartsWith'
-}
-
-export const MoreInfo = () => {
-  const { category } = useParams()
-  const { pathname } = useLocation()
-  const toSearch = SearchBy[category]
-
+export const Comics = () => {
   const { isDisabled, totalCount, setTotalResults, page, handleBackPage, handleNextPage, handleBackTenPages, handleNextTenPages } = usePage()
-  const { data, loading, setSearch } = useApi(pathname, toSearch, setTotalResults, totalCount)
+  const { data, loading, setSearch } = useApi('/comics', 'titleStartsWith', setTotalResults, totalCount)
 
   const props = { handleBackPage, handleNextPage, handleBackTenPages, handleNextTenPages, isDisabled, page }
 
@@ -32,7 +20,7 @@ export const MoreInfo = () => {
         <InputSearch setSearch={setSearch} />
       </Wrapper>
       <ListOfCards>
-        <Card data={data} loading={loading} path={category} />
+        <Card data={data} path='comics' loading={loading} />
       </ListOfCards>
     </>
   )

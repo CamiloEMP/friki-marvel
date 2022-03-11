@@ -1,23 +1,34 @@
-import { Anchor } from './Anchor'
+import { useEffect, useState } from 'react'
 import { HeaderID } from './InformationID/HeaderID'
-import { Tag } from './Tag'
 import { Loading } from './Loading'
+import { Anchor } from './Anchor'
+import { Tag } from './Tag'
 
-import { useApi } from '../hooks/useApi'
+import { useLocation, useParams } from 'react-router-dom'
+import { getCategoryID } from '../helpers/getCategoryID'
 
 import { Box, Stack, Link, Text } from '@chakra-ui/react'
-import { useLocation, useParams } from 'react-router-dom'
 import { FiExternalLink } from 'react-icons/fi'
 
 export const CharacterId = () => {
+  const [character, setCharacter] = useState({})
+  const [loading, setLoading] = useState(true)
   const { characterId } = useParams()
   const { pathname } = useLocation()
-  const { loading, data } = useApi(`characters/${characterId}`)
+
+  useEffect(() => {
+    getCategoryID('characters', characterId)
+      .then(data => {
+        setCharacter(data)
+        setLoading(false)
+      })
+  }, [])
+
   return (
     <>
-      {loading && <Loading />}
-      {data.map(character => (
-        <Stack key={character.id} w="100%" h="100%" marginBottom={8}>
+      {loading
+        ? <Loading />
+        : <Stack key={character.id} w="100%" h="100%" marginBottom={8}>
           <HeaderID
             image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
             alt={character.name}
@@ -70,7 +81,7 @@ export const CharacterId = () => {
             </Box>
           </Stack>
         </Stack>
-      ))}
+      }
     </>
   )
 }

@@ -1,39 +1,38 @@
 import { useState } from 'react'
 
 export const usePage = () => {
-  const initialValues = { offset: 0, total: 0, limit: 100 }
+  const initialValues = { offset: 0, total: 0, limit: 40 }
   const [page, setPage] = useState(1)
   const [totalCount, setTotalCount] = useState(initialValues)
 
   const isDisabled = {
     back: totalCount.offset === 0,
-    backTen: totalCount.offset === 0 || !(totalCount.offset - 1000 >= 0),
-    next: !(totalCount.offset < totalCount.total - 100),
-    nextTen: totalCount.total < 1000 || totalCount.offset + 1000 > totalCount.total
+    backTen: totalCount.offset === 0 || !(totalCount.offset - 400 >= 0),
+    next: !(totalCount.offset < totalCount.total - 40),
+    nextTen: totalCount.total < 1000 || totalCount.offset + 400 > totalCount.total
   }
 
   function setTotalResults (totalResults) {
-    console.log(totalResults)
     setTotalCount({ ...totalCount, total: totalResults })
   }
 
   function handleBackPage () {
-    setTotalCount({ ...totalCount, offset: totalCount.offset - 100 })
+    setTotalCount({ ...totalCount, offset: totalCount.offset - 40 })
     setPage(page - 1)
   }
 
   function handleNextPage () {
-    setTotalCount({ ...totalCount, offset: totalCount.offset + 100 })
+    setTotalCount({ ...totalCount, offset: totalCount.offset + 40 })
     setPage(page + 1)
   }
 
   function handleBackTenPages () {
-    setTotalCount({ ...totalCount, offset: totalCount.offset - 1000 })
+    setTotalCount({ ...totalCount, offset: totalCount.offset - 400 })
     setPage(page - 10)
   }
 
   function handleNextTenPages () {
-    setTotalCount({ ...totalCount, offset: totalCount.offset + 1000 })
+    setTotalCount({ ...totalCount, offset: totalCount.offset + 400 })
     setPage(page + 10)
   }
 

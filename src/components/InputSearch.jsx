@@ -2,14 +2,13 @@ import { Stack, Input, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 
 export const InputSearch = ({ setSearch }) => {
-  // nameStartsWith titleStartsWith
   const [searchedValue, setSearchedValue] = useState('')
   const handleSearch = () => {
     setSearch(searchedValue)
     setSearchedValue('')
   }
   return (
-    <Stack direction="row" alignItems="center" marginTop={12}>
+    <Stack direction="row" alignItems="center">
       <Input
         value={searchedValue}
         variant='flushed'

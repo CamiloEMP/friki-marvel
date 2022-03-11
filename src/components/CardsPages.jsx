@@ -7,9 +7,10 @@ import {
   Collapse,
   Stack
 } from '@chakra-ui/react'
+
 import { Loading } from './Loading'
 import { Anchor } from './Anchor'
-import { NotFound } from './NotFound'
+import { NotCharacters } from './NotCharacters'
 
 export const Card = ({ data, loading, path }) => {
   const [textWrapper, setTextWrapper] = useState(null)
@@ -22,9 +23,9 @@ export const Card = ({ data, loading, path }) => {
   return (
     <>
       {loading && <Loading/>}
-      {(!loading && data.length === 0) && <NotFound/>}
+      {!loading && data.length === 0 && <NotCharacters/>}
       {!loading && data.map(item => (
-        <Stack key={item.id} minW="320px" maxW="400px" fontWeight="normal" spacing={4}>
+        <Stack key={item.id} maxW="260px" fontWeight="normal" spacing={4} >
           <Anchor
             to={`/${path}/${item.id}`}
             cursor="pointer"
@@ -44,17 +45,16 @@ export const Card = ({ data, loading, path }) => {
             >
               {item.name ? item.name : item.title}
             </Text>
-            <AspectRatio maxW="400px" height="360px" ratio={16 / 9}>
-              <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} />
+            <AspectRatio maxW="full" ratio={4 / 3}>
+              <Image loading='lazy' src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} />
             </AspectRatio>
           </Anchor>
           <Button colorScheme="red" fontWeight="900" fontSize="lg" variant="solid"
-            onClick={() =>
-              toggle(item.id)} disabled={!item.description || item.description === ' '}>
-            View Description
+            onClick={() => toggle(item.id)} disabled={!item.description || item.description === ' '}>
+              View Description
           </Button>
           <Collapse in={textWrapper === item.id} animateOpacity>
-            <Text textAlign="start" fontSize="lg">
+            <Text textAlign="start" fontSize="lg" >
               {item.description}
             </Text>
           </Collapse>
